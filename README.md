@@ -9,6 +9,9 @@ CI/CD.
 **Game Shell demo:** https://dustyo-O.github.io/dusty-game-shell/template/ — the
 new-game template, deployed live, exercising every shell feature (leaderboard,
 share links, analytics).
+**Game #1 (prototype):** https://dustyo-O.github.io/dusty-game-shell/rabotyagi-tap/
+— "Работяги: Смена", built on the DUS-3 lore brief. Internal playtest build;
+not a public community launch (see `games/rabotyagi-tap/README.md`).
 
 ## Stack decision
 
