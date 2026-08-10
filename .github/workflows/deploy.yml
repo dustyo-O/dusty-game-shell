@@ -24,11 +24,17 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build --workspace=games/hello-world
+      - run: npm run build --workspace=games/template
+      - name: Assemble site
+        run: |
+          mkdir -p site/template
+          cp -r games/hello-world/dist/. site/
+          cp -r games/template/dist/. site/template/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: games/hello-world/dist
+          path: site
 
   deploy:
     needs: build
