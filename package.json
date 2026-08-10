@@ -1,0 +1,14 @@
+{
+  "name": "dusty-game-shell",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "games/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=games/hello-world",
+    "build": "npm run build --workspace=games/hello-world",
+    "preview": "npm run preview --workspace=games/hello-world"
+  }
+}
