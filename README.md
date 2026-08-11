@@ -9,9 +9,13 @@ CI/CD.
 **Game Shell demo:** https://dustyo-O.github.io/dusty-game-shell/template/ — the
 new-game template, deployed live, exercising every shell feature (leaderboard,
 share links, analytics).
-**Game #1 (prototype):** https://dustyo-O.github.io/dusty-game-shell/rabotyagi-tap/
-— "Работяги: Смена", built on the DUS-3 lore brief. Internal playtest build;
-not a public community launch (see `games/rabotyagi-tap/README.md`).
+**Game #1 (prototype, superseded):** https://dustyo-O.github.io/dusty-game-shell/rabotyagi-tap/
+— "Работяги: Смена" tap-clicker. Superseded by the verdict-card mechanic below
+per DUS-10/DUS-17 (see `games/rabotyagi-tap/README.md`); left live for reference.
+**Game #1 (Judgment Loop v1):** https://dustyo-O.github.io/dusty-game-shell/judgment-loop/
+— "Смена: вердикт", the verdict-card Telegram Mini App foundation (DUS-20; spec:
+DUS-17 `gdd`). Internal engine playtest, content mostly placeholder pending
+DUS-19; not a public community launch (see `games/judgment-loop/README.md`).
 
 ## Stack decision
 
@@ -111,3 +115,27 @@ the Deploy action in GitHub, or:
 ```
 gh workflow run deploy.yml
 ```
+
+### Deploy note: private-repo hosting (DUS-2 / DUS-20)
+
+GitHub Pages only serves a live site from a **public** repo on the account's
+current (Free) plan — this is why `judgment-loop` still ships from this
+public repo rather than a new private one, even though the CEO asked
+(DUS-2) for repos to go private going forward. That ask is tracked as a
+still-**pending** interaction on DUS-2 (three options: pay for GitHub Pro,
+switch host, or accept the URL going dark) — this repo's visibility hasn't
+changed.
+
+**Recommended host once a repo needs to go private: Cloudflare Pages.**
+It builds straight from a private GitHub repo on the free tier (via the
+Cloudflare GitHub App, no separate token needed for the connection) and
+keeps push-to-deploy. Setup needs a Cloudflare account connected to this
+GitHub org — that's a one-time dashboard action outside this engineer's
+current credentials/tooling in this environment, so it's not done in this
+change. When someone with that access is ready: connect the repo in the
+Cloudflare Pages dashboard, set the build command per game
+(`npm run build --workspace=games/<name>`, output `games/<name>/dist`), and
+either keep this `deploy.yml` for the still-public games or retire it once
+everything moves over. Vercel/Netlify are equally viable free-tier
+alternatives with the same "connect a private repo" flow if Cloudflare turns
+out to be a worse fit.

@@ -27,12 +27,14 @@ jobs:
       - run: npm run build --workspace=games/hello-world
       - run: npm run build --workspace=games/template
       - run: npm run build --workspace=games/rabotyagi-tap
+      - run: npm run build --workspace=games/judgment-loop
       - name: Assemble site
         run: |
-          mkdir -p site/template site/rabotyagi-tap
+          mkdir -p site/template site/rabotyagi-tap site/judgment-loop
           cp -r games/hello-world/dist/. site/
           cp -r games/template/dist/. site/template/
           cp -r games/rabotyagi-tap/dist/. site/rabotyagi-tap/
+          cp -r games/judgment-loop/dist/. site/judgment-loop/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

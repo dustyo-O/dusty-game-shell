@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Смена: вердикт</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+      :root {
+        --bg: #1c1f1a;
+        --panel: #262a1f;
+        --ink: #e8e6da;
+        --muted: #a8a48c;
+        --accent: #e8c547;
+        --border: #4a4632;
+      }
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: system-ui, sans-serif;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        box-sizing: border-box;
+        gap: 12px;
+      }
+      #title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      #card {
+        width: 100%;
+        max-width: 440px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      #progress {
+        font-size: 12px;
+        color: var(--muted);
+        text-align: center;
+      }
+      #infraction, #reaction {
+        font-size: 16px;
+        line-height: 1.5;
+        min-height: 90px;
+      }
+      #reaction-verdict {
+        font-size: 12px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .verdict-row {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        font: inherit;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: #33301f;
+        color: var(--ink);
+        cursor: pointer;
+        flex: 1;
+      }
+      button:active {
+        background: var(--border);
+      }
+      button.primary {
+        background: var(--accent);
+        color: #1c1f1a;
+        font-weight: 700;
+        border-color: var(--accent);
+      }
+      button.secondary {
+        background: transparent;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      #screen-end {
+        text-align: center;
+      }
+      #end-summary {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+      #end-count {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .hidden {
+        display: none !important;
+      }
+      #theme-row {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      #theme-row button {
+        flex: none;
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      #footer {
+        font-size: 11px;
+        color: #6b6852;
+        max-width: 440px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title">Объяснительная или минус премия?</div>
+
+    <div id="card">
+      <div id="progress"></div>
+
+      <div id="screen-card">
+        <div id="infraction"></div>
+        <div class="verdict-row">
+          <button id="verdict-a" type="button"></button>
+          <button id="verdict-b" type="button"></button>
+        </div>
+      </div>
+
+      <div id="screen-reaction" class="hidden">
+        <div id="reaction-verdict"></div>
+        <div id="reaction"></div>
+        <button id="reveal-other-btn" class="secondary" type="button">🔒 Глянуть другой вердикт</button>
+        <div id="other-reaction" class="hidden"></div>
+        <button id="next-btn" class="primary" type="button">Далее →</button>
+      </div>
+
+      <div id="screen-end" class="hidden">
+        <div id="end-summary"></div>
+        <div id="end-count"></div>
+        <button id="bonus-btn" class="secondary" type="button">📺 Ещё одна смена?</button>
+        <button id="share-btn" type="button">Поделиться сменой</button>
+        <button id="again-btn" class="primary" type="button">Новая смена</button>
+      </div>
+    </div>
+
+    <div id="theme-row"></div>
+
+    <div id="footer">
+      Прототип по мотивам фольклора "коты ишачат на заводе" — внутренний
+      плейтест движка карточек, не для публикации без согласия сообщества.
+      Часть текстов — временные заглушки (DUS-19).
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
