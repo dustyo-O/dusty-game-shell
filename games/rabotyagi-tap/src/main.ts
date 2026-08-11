@@ -1,9 +1,9 @@
 import { createGameShell } from "@dusty/game-shell";
 
-// Game #1 vertical slice — lore: "коты ишачат на заводе" (DUS-3 brief).
+// Game #1 vertical slice — lore: "коты ишачат на заводе" / @rabotyagikoti (DUS-8 world-bible).
 // Core loop: tap the cat to punch out parts before the shift timer runs out.
-// Cast, catchphrases, and setting are pulled from the lore brief; profanity
-// is cleaned per the brief's guardrails (§9).
+// Cast + voice are the channel's real recurring roster; profanity kept raw
+// per CEO call on DUS-7 (negotiation-grade demo, not a store listing).
 const shell = createGameShell({ gameId: "rabotyagi-tap" });
 
 const canvas = document.getElementById("game") as HTMLCanvasElement;
@@ -17,15 +17,23 @@ const ROUND_SECONDS = 20;
 const COMBO_SIZE = 8;
 const COMBO_BONUS_SECONDS = 3;
 
-// Cast + voice lifted from the DUS-3 lore brief (cleaned register per §9).
-const WORKERS = ["Гена", "Серёга", "Коля", "Вениамин", "Всеволод", "Валя"];
+// Cast + voice lifted from the DUS-8 world-bible (@rabotyagikoti's real recurring roster).
+const WORKERS = [
+  "Геннадий Рыболетучих",
+  "Серёга",
+  "Николай Куринокупатов",
+  "Вениамин Викторович",
+  "Всеволод",
+  "Семён Павлович",
+];
 const CATCHPHRASES = [
-  "Тьфу, ёлы-палы!",
-  "Ещё одна смена...",
+  "Тьфу, блять!",
+  "Ебанарот...",
   "Работяги не сдаются!",
-  "Гена одобряет.",
-  "Норму берём измором.",
-  "Конвейер не ждёт.",
+  "Геннадий одобряет.",
+  "Долбильня не ждёт.",
+  "Пу-пу-пууу...",
+  "Все уволены!",
 ];
 
 let score = 0;
